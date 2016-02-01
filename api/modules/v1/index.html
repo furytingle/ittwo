@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script>
+
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+    <script src="js/app.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="index" class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><a href="#" ng-click="sort = 'name'; reverse = !reverse">Name</a></th>
+                    <th>Courses</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="x in students | orderBy:sort:reverse | filter:paginate">
+                <td>{{x.name}}</td>
+                <td><span ng-repeat="s in x.studentsCourses">{{s.subject}}<br/></span></td>
+            </tr>
+        </table>
+        <pagination total-items="7" ng-model="currentPage"
+              max-size="5" boundary-links="true"
+              items-per-page="numPerPage" class="pagination-sm">
+        </pagination>
+    </div>
+
+</body>
+
+</html>
